@@ -21,8 +21,28 @@ var authorsController = {
         console.log(author);
       }
     });
+  },
+  update: function(req, update){
+    AuthorModel.findOneAndUpdate({name: req.name}, {name: update.name}, {new: true}, function(err, author){
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(author);
+      }
+    });
   }
+  // show: function(req){
+  //   AuthorModel.findById({_id: req}, function(err, author){
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log(author);
+  //     }
+  //   });
+  // }
 };
 
-authorsController.index();
-authorsController.show({name: "Evan"});
+// authorsController.index();
+// authorsController.show({name: "Evan"});
+//authorsController.show("570bc28340628bdfa4f34559");
+authorsController.update({name: "Christine"}, {name: "Momo"});
