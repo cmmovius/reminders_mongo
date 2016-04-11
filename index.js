@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-
 mongoose.connect('mongodb://localhost/reminders');
 
 var db = mongoose.connection;
@@ -15,3 +14,18 @@ db.once('open', function() {
   // INSERT CODE HERE!
 
 });
+
+var Schema = mongoose.Schema,
+  ObjectId = Schema.ObjectId
+
+var ReminderSchema = new Schema({
+  body: String
+});
+
+var AuthorSchema = new Schema({
+  name: String,
+  reminders: [ReminderSchema]
+});
+
+var ReminderModel = mongoose.model("Reminder", ReminderSchema);
+var AuthorModel = mongoose.model("Author", AuthorSchema);
