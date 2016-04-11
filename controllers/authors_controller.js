@@ -30,6 +30,15 @@ var authorsController = {
         console.log(author);
       }
     });
+  },
+  destroy: function(req){
+    AuthorModel.findOneAndRemove({name: req.name}, function(err, author){
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(author);
+      }
+    });
   }
   // show: function(req){
   //   AuthorModel.findById({_id: req}, function(err, author){
@@ -45,4 +54,5 @@ var authorsController = {
 // authorsController.index();
 // authorsController.show({name: "Evan"});
 //authorsController.show("570bc28340628bdfa4f34559");
-authorsController.update({name: "Christine"}, {name: "Momo"});
+//authorsController.update({name: "Christine"}, {name: "Momo"});
+authorsController.destroy({name: "Momo"});
